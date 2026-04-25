@@ -10,7 +10,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
-    "https://salary-prediction-react-fast-api.vercel.app/",
+    "https://salary-prediction-react-fast-api.vercel.app",
     
 ]
 
@@ -57,16 +57,20 @@ def predict_salary(data:SalaryInput):
     
 
 
-
-data_path = os.path.join("data.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(BASE_DIR, "data.csv")
 df = pd.read_csv(data_path)
 
 
-education_levels = sorted(df['Education Level'].dropna().unique().tolist())
-job_titles = sorted(df['Job Title'].dropna().unique().tolist())
 
 @app.get("/options")
 def get_options():
+    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.csv")
+    df = pd.read_csv(data_path)
+
+    education_levels = sorted(df['Education Level'].dropna().unique().tolist())
+    job_titles = sorted(df['Job Title'].dropna().unique().tolist())
+
     return {
         "education_levels": education_levels,
         "job_titles": job_titles
