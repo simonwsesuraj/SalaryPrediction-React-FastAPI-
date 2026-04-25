@@ -29,9 +29,6 @@ class SalaryInput(BaseModel):
     job_title:str
     year_of_experience:int
 
-@app.get("/")
-def home():
-    return {"message": "Salary Prediction API Running"}
 
 @app.post("/predict")
 def predict_salary(data:SalaryInput):
