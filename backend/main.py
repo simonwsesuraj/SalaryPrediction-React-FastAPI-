@@ -10,9 +10,14 @@ import os
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",
+    "https://your-frontend.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["salary-prediction-react-fast-api.vercel.app"],
+    allow_origins=origins,
     allow_methods=["*"],
     allow_headers=["*"],
     allow_credentials=True,
@@ -29,6 +34,9 @@ class SalaryInput(BaseModel):
     job_title:str
     year_of_experience:int
 
+@app.get("/")
+def home():
+    return {"message": "Salary Prediction API Running"}
 
 @app.post("/predict")
 def predict_salary(data:SalaryInput):
