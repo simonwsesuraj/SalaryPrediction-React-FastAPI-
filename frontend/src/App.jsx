@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const res = await fetch('http://localhost:8000/options')
+        const res = await fetch('https://salaryprediction-react-fastapi.onrender.com/options')
         const data = await res.json()
         setEducationOptions(data.education_levels)
         setJobOptions(data.job_titles)
