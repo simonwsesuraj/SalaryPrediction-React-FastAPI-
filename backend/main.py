@@ -1,5 +1,3 @@
-from pyexpat import features
-
 import pandas as pd
 import numpy as np
 from fastapi import FastAPI
@@ -12,8 +10,8 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
-    "https://your-frontend.vercel.app",
-    'https://salaryprediction-react-fastapi.onrender.com/options',
+    "https://salary-prediction-react-fast-api.vercel.app/",
+    
 ]
 
 app.add_middleware(
